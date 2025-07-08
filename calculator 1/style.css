@@ -1,0 +1,172 @@
+:root {
+    --main-bg: gray;
+    --toggle-bg: #242d44;
+    --screen-bg: black;
+    --keypad-bg: black;
+
+    --btn-bg: #eae3dc;
+    --btn-shadow: #b4a597;
+
+    --del-bg: #647198;
+    --del-shadow: #414e73;
+
+    --reset-bg: #647198;
+    --reset-shadow: #414e73;
+
+    --equal-bg: #d03f2f;
+    --equal-shadow: #93261a;
+
+    --text-light: white;
+    --text-dark: #444;
+  }
+
+  body.theme-2 {
+    --main-bg: #e6e6e6;
+    --toggle-bg: #d1cccc;
+    --screen-bg: yellow;
+    --keypad-bg: yellow;
+
+    --btn-bg: #e5e4e1;
+    --btn-shadow: #a69d91;
+
+    --del-bg: #388187;
+    --del-shadow: #1c6166;
+
+    --reset-bg: #388187;
+    --reset-shadow: #1c6166;
+
+    --equal-bg: #c85402;
+    --equal-shadow: #873901;
+
+    --text-light: #000;
+    --text-dark: #000;
+  }
+
+  body.theme-3 {
+    --main-bg: #160628;
+    --toggle-bg:#160628 ;
+    --screen-bg: red;
+    --keypad-bg: red;
+
+    --btn-bg:gray ;
+    --btn-shadow:none;
+
+    --del-bg: #00e0d1;
+    --del-shadow: none;
+
+    --reset-bg:#00e0d1 ;
+    --reset-shadow: none;
+
+    --equal-bg: #00e0d1;
+    --equal-shadow: none;
+
+    --text-light: red;
+    --text-dark: red;
+  }
+
+  body {
+    background: var(--main-bg);
+    font-family: "Segoe UI", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    transition: background 0.3s ease;
+  }
+
+  .calculator-container {
+    width: 320px;
+    max-width: 90%;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-light);
+    margin-bottom: 10px;
+  }
+
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .theme-toggle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .theme-label {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+
+  .toggle-switch {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: var(--text-light);
+  }
+
+  .toggle-switch input[type="range"] {
+    width: 60px;
+  }
+
+  .display {
+    background-color: var(--screen-bg);
+    color: var(--text-light);
+    font-size: 32px;
+    text-align: right;
+    padding: 20px;
+    border-radius: 11px;
+    margin-bottom: 15px;
+    overflow-x: auto;
+  }
+
+  .buttons {
+    background-color: var(--keypad-bg);
+    padding: 20px;
+    border-radius: 11px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+  }
+
+  button {
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0px 4px var(--btn-shadow);
+    background-color: var(--btn-bg);
+    color: var(--text-dark);
+    cursor: pointer;
+  }
+
+  button:active {
+    transform: translateY(2px);
+  }
+
+  .del {
+    background-color: var(--del-bg);
+    box-shadow: 0px 4px var(--del-shadow);
+    color: white;
+  }
+
+  .reset {
+    grid-column: span 2;
+    background-color: var(--reset-bg);
+    box-shadow: 0px 4px var(--reset-shadow);
+    color: white;
+  }
+
+  .equal {
+    grid-column: span 2;
+    background-color: var(--equal-bg);
+    box-shadow: 0px 4px var(--equal-shadow);
+    color: white;
+  }

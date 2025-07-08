@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="./style.css">
+    <!-- <script src="./cal.js"> </script> -->
+    
+  </head>
+  <body>
+    <div class="calculator-container">
+      <div class="header">
+        <span class="logo">calc</span>
+        <div class="theme-toggle">
+          <span class="theme-label">THEME</span>
+          <div class="toggle-switch">
+            <span>1</span><span>2</span><span>3</span>
+            <input
+              type="range"
+              min="1"
+              max="3"
+              step="1"
+              value="1"
+              id="themeSlider"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="display" id="display">0</div>
+
+      <div class="buttons">
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button class="del">DEL</button>
+
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>+</button>
+
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>-</button>
+
+        <button>.</button>
+        <button>0</button>
+        <button>/</button>
+        <button>x</button>
+
+        <button class="reset">RESET</button>
+        <button class="equal">=</button>
+      </div>
+    </div>
+    
+    <script>const display = document.getElementById("display");
+      const buttons = document.querySelectorAll("button");
+      const themeSlider = document.getElementById("themeSlider");
+
+      let currentInput = "";
+      let expression = "";
+
+      const operators = ["+", "-", "x", "/"];
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const value = button.textContent;
+
+          if (value === "RESET") {
+            expression = "";
+            currentInput = "";
+            display.textContent = "0";
+          } else if (value === "DEL") {
+            currentInput = currentInput.slice(0, -1);
+            expression = expression.slice(0, -1);
+            display.textContent = currentInput || "0";
+          } else if (value === "=") {
+            try {
+              let result = eval(expression.replace(/x/g, "*"));
+              display.textContent = result.toString();
+              expression = result.toString();
+              currentInput = result.toString();
+            } catch {
+              display.textContent = "Error";
+              expression = "";
+              currentInput = "";
+            }
+          } else {
+            if (
+              operators.includes(value) &&
+              operators.includes(expression.slice(-1))
+            ) {
+              expression = expression.slice(0, -1);
+              currentInput = currentInput.slice(0, -1);
+            }
+            currentInput += value;
+            expression += value.replace("x", "*");
+            display.textContent = currentInput;
+          }
+        });
+      });
+
+      function setTheme(theme) {
+        document.body.className = "theme-" + theme;
+        localStorage.setItem("calc-theme", theme);
+      }
+
+      themeSlider.addEventListener("input", () => {
+        setTheme(themeSlider.value);
+      });
+
+      const savedTheme =
+        localStorage.getItem("calc-theme") ||
+        (window.matchMedia("(prefers-color-scheme: dark)").matches ? "1" : "2");
+      themeSlider.value = savedTheme;
+      setTheme(savedTheme);</script>
+
+    
+  </body>
+</html>
